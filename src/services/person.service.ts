@@ -23,7 +23,7 @@ export async function addPerson(person: Person) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(person)
         });
-        const res = await response.json();
+        const res = await response;
         console.log(res)
         return res;
     }

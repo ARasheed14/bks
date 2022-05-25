@@ -1,24 +1,46 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import * as PeopleService from '../services/person.service';
-import ExploreContainer from '../components/ExploreContainer';
+import UserListComponent from '../components/userListComponent/userListComponent';
+import UserDetailComponent from '../components/userDetailComponent/userDetailComponent';
 import './Tab1.css';
+import { Person } from '../models/person';
+import { useState } from 'react';
 
-const Tab1: React.FC = () => {
-  PeopleService.getPeople();
+interface ContainerProps {
+  list: Person[]
+}
+
+const Tab1: React.FC<ContainerProps> = ({ list }) => {
+  const [isSelected, setIsSelected] = useState(false);
+  const [currentSelectedPerson, setCurrentSelectedPerson] = useState<any>('');
+  // PeopleService.addPerson(test);
+  // PeopleService.getPeople();
   return (
     <IonPage>
-      <IonHeader>
+      {/* <IonHeader>
         <IonToolbar>
-          <IonTitle>Test Persons List</IonTitle>
+          <IonTitle>People Search</IonTitle>
         </IonToolbar>
-      </IonHeader>
+      </IonHeader> */}
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
+        {isSelected? 
           <IonToolbar>
-            <IonTitle size="large">Test Persons List</IonTitle>
+            <IonButtons>
+              <IonButton onClick={() => {setIsSelected(false)}}>
+                Back
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+        : 
+        <IonToolbar>
+          <IonTitle size="large">Home</IonTitle>
+        </IonToolbar>
+        }
+        {isSelected? 
+        <UserDetailComponent person={currentSelectedPerson} />
+        :  
+        <UserListComponent peopleList={list} setCurrentSelectedPerson={setCurrentSelectedPerson} setIsSelected={setIsSelected}/>
+        }
       </IonContent>
     </IonPage>
   );
