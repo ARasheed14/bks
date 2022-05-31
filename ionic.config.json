@@ -1,5 +1,7 @@
 {
   "name": "brotherskeptsecret",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }

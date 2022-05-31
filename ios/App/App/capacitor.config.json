@@ -1,0 +1,6 @@
+{
+	"appId": "airtesting",
+	"appName": "brotherskeptsecret",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
