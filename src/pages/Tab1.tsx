@@ -1,7 +1,9 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar, useIonActionSheet } from '@ionic/react';
+import { personCircle } from 'ionicons/icons';
 import * as PeopleService from '../services/person.service';
 import UserListComponent from '../components/userListComponent/userListComponent';
 import UserDetailComponent from '../components/userDetailComponent/userDetailComponent';
+import CreateProfileComponent from '../components/createProfileComponent/createProfileComponent';
 import './Tab1.css';
 import { Person } from '../models/person';
 import { useState } from 'react';
@@ -17,12 +19,7 @@ const Tab1: React.FC<ContainerProps> = ({ list }) => {
   // PeopleService.getPeople();
   return (
     <IonPage>
-      {/* <IonHeader>
-        <IonToolbar>
-          <IonTitle>People Search</IonTitle>
-        </IonToolbar>
-      </IonHeader> */}
-      <IonContent fullscreen>
+      <IonHeader>
         {isSelected? 
           <IonToolbar>
             <IonButtons>
@@ -33,9 +30,16 @@ const Tab1: React.FC<ContainerProps> = ({ list }) => {
           </IonToolbar>
         : 
         <IonToolbar>
+          <IonButtons slot="primary">
+            <IonButton routerLink='/createprofilecomponent'>
+              <IonIcon slot="start" color="medium" icon={personCircle} />
+            </IonButton> 
+          </IonButtons>
           <IonTitle size="large">Home</IonTitle>
         </IonToolbar>
         }
+        </IonHeader>
+      <IonContent fullscreen>
         {isSelected? 
         <UserDetailComponent person={currentSelectedPerson} />
         :  

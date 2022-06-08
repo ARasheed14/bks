@@ -15,6 +15,7 @@ import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import UserDetailComponent from './components/userDetailComponent/userDetailComponent';
+import CreateProfileComponent from './components/createProfileComponent/createProfileComponent';
 import { Person } from './models/person';
 
 /* Core CSS required for Ionic components to work properly */
@@ -83,6 +84,7 @@ const App: React.FC = () => (
             <Redirect to="/tab1" />
           </Route>
           <Route path="/userdetailcomponent/users/:id" component={UserDetailComponent}/>
+          <Route path="/createprofilecomponent" component={CreateProfileComponent}/>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
@@ -91,11 +93,11 @@ const App: React.FC = () => (
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
             <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonLabel>Events</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
             <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonLabel>Live Sessions</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
