@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar, useIonActionSheet } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { personCircle } from 'ionicons/icons';
 import * as PeopleService from '../services/person.service';
 import UserListComponent from '../components/userListComponent/userListComponent';
