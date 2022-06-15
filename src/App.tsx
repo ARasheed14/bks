@@ -45,27 +45,27 @@ setupIonicReact();
 const pList: Person[] = [
   { 
     _id: 2,
-    first_name: 'Manny',
+    first_name: 'Manual',
     avatarimg: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp',
-    last_name: 'Doe',
+    last_name: 'Rivas',
     age: '20',
     about: 'IT Director for 20 years.',
     profession: 'IT Director'
   },
   { 
     _id: 2,
-    first_name: 'Ali',
+    first_name: 'John',
     avatarimg: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp',
-    last_name: 'Doe',
+    last_name: 'Smith',
     age: '20',
     about: 'I\'m a designer',
     profession: 'Graphic Designer'
   },
   { 
     _id: 2,
-    first_name: 'Will',
+    first_name: 'William',
     avatarimg: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp',
-    last_name: 'Doe',
+    last_name: 'Shakespear',
     age: '20',
     about: 'I\'m a coder',
     profession: 'Software Engineer'
