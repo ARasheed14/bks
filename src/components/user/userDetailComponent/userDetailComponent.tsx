@@ -13,13 +13,10 @@ const UserDetailComponent: React.FC<ContainerProps> = ({ person }) => {
         <IonItem>
           <IonGrid>
             <IonRow className="ion-align-items-center">
-              <IonCol size="3">
-                <IonAvatar>
+              <IonCol className='ion-justify-content-center'>
+                <IonAvatar style={{ margin: 'auto', height: '120px', width: '120px' }}>
                   <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp" />
                 </IonAvatar>
-              </IonCol>
-              <IonCol size="9">
-                {person.first_name} {person.last_name}
               </IonCol>
             </IonRow>
           </IonGrid>
@@ -27,10 +24,14 @@ const UserDetailComponent: React.FC<ContainerProps> = ({ person }) => {
       </IonList>
       <IonCard>
         <IonCardHeader>
-          <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-          <IonCardTitle>
+          <IonCardTitle>{person.first_name} {person.last_name}</IonCardTitle>
+          <IonCardSubtitle>
+            Curreent Title: <br />
             {person.profession}
-          </IonCardTitle>
+          </IonCardSubtitle>
+          <IonCardSubtitle>
+            About:
+          </IonCardSubtitle>
         </IonCardHeader>
 
         <IonCardContent>

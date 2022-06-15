@@ -1,6 +1,7 @@
 import { Person } from '../../../models/person';
 import { IonList, IonItem, IonGrid, IonRow, IonCol, IonSearchbar, IonToolbar, IonAvatar } from '@ionic/react';
 import './userListComponent.css';
+import { useState } from 'react';
 
 interface ContainerProps {
   peopleList: Person[]
@@ -9,13 +10,21 @@ interface ContainerProps {
 }
 
 const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSelectedPerson, setIsSelected }) => {
+  const [searchText, setSearchText] = useState('');
   return (
     <>
       <IonToolbar>
-        <IonSearchbar placeholder='Enter your search'></IonSearchbar>
+        <IonSearchbar onIonChange={(e) => setSearchText(e.detail.value!)} placeholder='Enter your search'></IonSearchbar>
       </IonToolbar>
       <IonList> 
-        {peopleList.map((person, key) => 
+        {peopleList.filter((val) => {
+          //Todo: Refactor this.
+          if(searchText == '') {
+            return val
+          } else if (val.first_name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
+            return val
+          }
+        }).map((person, key) => 
         <IonItem key={key} onClick={() => {setCurrentSelectedPerson(person); setIsSelected(true)}}>
           <IonGrid>
             <IonRow className="ion-align-items-center">
