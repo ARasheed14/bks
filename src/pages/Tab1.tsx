@@ -1,9 +1,9 @@
 import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { personCircle } from 'ionicons/icons';
 import * as PeopleService from '../services/person.service';
-import UserListComponent from '../components/userListComponent/userListComponent';
-import UserDetailComponent from '../components/userDetailComponent/userDetailComponent';
-import CreateProfileComponent from '../components/createProfileComponent/createProfileComponent';
+import UserListComponent from '../components/user/userListComponent/userListComponent';
+import UserDetailComponent from '../components/user/userDetailComponent/userDetailComponent';
+import CreateProfileComponent from '../components/profile/createProfileComponent';
 import './Tab1.css';
 import { Person } from '../models/person';
 import { useState } from 'react';

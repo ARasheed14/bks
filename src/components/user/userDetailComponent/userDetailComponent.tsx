@@ -1,4 +1,4 @@
-import { Person } from '../../models/person';
+import { Person } from '../../../models/person';
 import { IonList, IonItem, IonGrid, IonRow, IonCol, IonAvatar, IonCardHeader, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 import './userDetailComponent.css';
 
@@ -28,12 +28,13 @@ const UserDetailComponent: React.FC<ContainerProps> = ({ person }) => {
       <IonCard>
         <IonCardHeader>
           <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-          <IonCardTitle>Card Title</IonCardTitle>
+          <IonCardTitle>
+            {person.profession}
+          </IonCardTitle>
         </IonCardHeader>
 
         <IonCardContent>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+          {person.about}
         </IonCardContent>
       </IonCard>
     </>

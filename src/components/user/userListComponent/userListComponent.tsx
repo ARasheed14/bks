@@ -1,4 +1,4 @@
-import { Person } from '../../models/person';
+import { Person } from '../../../models/person';
 import { IonList, IonItem, IonGrid, IonRow, IonCol, IonSearchbar, IonToolbar, IonAvatar } from '@ionic/react';
 import './userListComponent.css';
 import { Link } from 'react-router-dom';
