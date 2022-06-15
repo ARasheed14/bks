@@ -1,7 +1,6 @@
 import { Person } from '../../../models/person';
 import { IonList, IonItem, IonGrid, IonRow, IonCol, IonSearchbar, IonToolbar, IonAvatar } from '@ionic/react';
 import './userListComponent.css';
-import { Link } from 'react-router-dom';
 
 interface ContainerProps {
   peopleList: Person[]
@@ -22,7 +21,7 @@ const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSel
             <IonRow className="ion-align-items-center">
               <IonCol size="3">
               <IonAvatar>
-                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp" />
+                <img src={person.avatarimg} />
               </IonAvatar>
               </IonCol>
                 <IonCol size="9">

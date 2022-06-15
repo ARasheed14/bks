@@ -31,8 +31,8 @@ const Tab1: React.FC<ContainerProps> = ({ list }) => {
         : 
         <IonToolbar>
           <IonButtons slot="primary">
-            <IonButton routerLink='/createprofilecomponent'>
-              <IonIcon size='large' slot="start" color="medium" icon={personCircle} />
+            <IonButton fill="clear" routerLink='/createprofilecomponent'>
+              <IonIcon size="large" slot="start" color="medium" icon={personCircle} />
             </IonButton> 
           </IonButtons>
           <IonTitle size="large">Home</IonTitle>

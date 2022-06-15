@@ -42,10 +42,11 @@ import { useState } from 'react';
 
 setupIonicReact();
 
-const peopleList: Person[] = [
+const pList: Person[] = [
   { 
     _id: 2,
-    first_name: 'John',
+    first_name: 'Manny',
+    avatarimg: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp',
     last_name: 'Doe',
     age: '20',
     about: 'IT Director for 20 years.',
@@ -53,7 +54,8 @@ const peopleList: Person[] = [
   },
   { 
     _id: 2,
-    first_name: 'John',
+    first_name: 'Ali',
+    avatarimg: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp',
     last_name: 'Doe',
     age: '20',
     about: 'I\'m a designer',
@@ -61,7 +63,8 @@ const peopleList: Person[] = [
   },
   { 
     _id: 2,
-    first_name: 'John',
+    first_name: 'Will',
+    avatarimg: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp',
     last_name: 'Doe',
     age: '20',
     about: 'I\'m a coder',
@@ -72,6 +75,7 @@ const peopleList: Person[] = [
 const App: React.FC = () => {
   const [token, setToken] = useState('');
   // const [isSignUp, setIsSignUp] = useState(false);
+  const [peopleList, setPeopleList] = useState(pList);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // const updateSignUpFlag = (isSignUp: boolean) => {
@@ -79,6 +83,11 @@ const App: React.FC = () => {
   // };
   const loginCheck = () => {
     console.log(isLoggedIn);
+  }
+  const updateList = (person: Person) => {
+    setPeopleList([
+      ...peopleList, person
+    ])
   }
   // console.log(token, isSignUp, 'here')
   // if(token === '' && isSignUp === false) {
@@ -105,7 +114,7 @@ const App: React.FC = () => {
                 <Redirect to="/tab1" />
               </Route>
               <Route path="/userdetailcomponent/users/:id" component={UserDetailComponent} />
-              <Route path="/createprofilecomponent" component={CreateProfileComponent} />
+              <Route path="/createprofilecomponent" render={() => <CreateProfileComponent updatePeopleList={updateList}/>} />
               <Route path="/landingcomponent" component={LandingComponent} />
               <Route path="/logincomponent" component={LoginComponent} />
             </IonRouterOutlet>

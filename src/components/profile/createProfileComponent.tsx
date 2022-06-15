@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonBackButton, IonButtons, IonGrid, IonCol, IonRow, IonButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonBackButton, IonButtons, IonGrid, IonCol, IonRow, IonButton, useIonLoading } from '@ionic/react';
+import { useHistory } from "react-router-dom";
 import './createProfileComponent.css';
 
 interface ContainerProps {
-  setIsSignUp: any,
-  setToken: any
+  // setIsSignUp: any,
+  // setToken: any,
+  updatePeopleList: any
 }
 
-const CreateProfileComponent: React.FC<ContainerProps> = ({ setIsSignUp, setToken }) => {
+const CreateProfileComponent: React.FC<ContainerProps> = ({ updatePeopleList }) => {
   const [formState, setFormState] = useState<any>({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
+    avatarimg: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp',
     age: '',
     profession: '',
     about: ''
   });
+  const [present, dismiss] = useIonLoading();
+
+  const history = useHistory();
 
   const handleSubmit = (e:any) => {
-    setIsSignUp(false);
-    setToken('Token');
+    // setIsSignUp(false);
+    // setToken('Token');
+    present({
+      message: 'Creating Profile...',
+      duration: 3000
+    })
+    updatePeopleList(formState);
+    setTimeout(() => {
+      history.goBack()
+    }, 3000)
     console.log(formState);
   }
 
@@ -51,13 +65,13 @@ const CreateProfileComponent: React.FC<ContainerProps> = ({ setIsSignUp, setToke
               <IonCol>
                 <IonItem>
                   <IonLabel position="floating">First Name:</IonLabel>
-                  <IonInput type="text" name="firstName" onIonChange={handleChange}></IonInput>
+                  <IonInput type="text" name="first_name" onIonChange={handleChange}></IonInput>
                 </IonItem>
               </IonCol>
               <IonCol>
                 <IonItem>
                   <IonLabel position="floating">Last Name:</IonLabel>
-                  <IonInput type="text" name="lastName" onIonChange={handleChange}></IonInput>
+                  <IonInput type="text" name="last_name" onIonChange={handleChange}></IonInput>
                 </IonItem>
               </IonCol>
             </IonRow>
