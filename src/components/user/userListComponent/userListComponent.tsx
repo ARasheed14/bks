@@ -17,12 +17,12 @@ const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSel
         <IonSearchbar onIonChange={(e) => setSearchText(e.detail.value!)} placeholder='Enter your search'></IonSearchbar>
       </IonToolbar>
       <IonList> 
-        {peopleList.filter((val) => {
-          //Todo: Refactor this.
+        {peopleList.filter((person) => {
+          // Todo: Refactor this. Seperate first name and last name filters.
           if(searchText == '') {
-            return val
-          } else if (val.first_name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
-            return val
+            return person
+          } else if (person.first_name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())|| person.last_name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
+            return person
           }
         }).map((person, key) => 
         <IonItem key={key} onClick={() => {setCurrentSelectedPerson(person); setIsSelected(true)}}>

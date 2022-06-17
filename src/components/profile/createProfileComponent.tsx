@@ -65,32 +65,32 @@ const CreateProfileComponent: React.FC<ContainerProps> = ({ updatePeopleList }) 
               <IonCol>
                 <IonItem>
                   <IonLabel position="floating">First Name:</IonLabel>
-                  <IonInput type="text" name="first_name" onIonChange={handleChange}></IonInput>
+                  <IonInput type="text" name="first_name" required onIonChange={handleChange}></IonInput>
                 </IonItem>
               </IonCol>
               <IonCol>
                 <IonItem>
                   <IonLabel position="floating">Last Name:</IonLabel>
-                  <IonInput type="text" name="last_name" onIonChange={handleChange}></IonInput>
+                  <IonInput type="text" name="last_name" required onIonChange={handleChange}></IonInput>
                 </IonItem>
               </IonCol>
             </IonRow>
           </IonGrid>
             <IonItem>
               <IonLabel position="floating">Age:</IonLabel>
-              <IonInput type="number" name="age" onIonChange={handleChange}></IonInput>
+              <IonInput type="number" name="age" required onIonChange={handleChange}></IonInput>
             </IonItem>
           <IonItemDivider>Occupation</IonItemDivider>
           <IonItem>
             <IonLabel position="floating">Profession:</IonLabel>
-            <IonInput type="text" name="profession" onIonChange={handleChange}></IonInput>
+            <IonInput type="text" name="profession" required onIonChange={handleChange}></IonInput>
           </IonItem>
           <IonItemDivider>About</IonItemDivider>
           <IonItem>
-            <IonInput type="text" name="about" placeholder="Enter at least one hobby" onIonChange={handleChange}></IonInput>
+            <IonInput type="text" name="about" required placeholder="Enter at least one hobby" onIonChange={handleChange}></IonInput>
           </IonItem>
         </IonList> 
-        <IonButton expand="block" onClick={handleSubmit}>Submit</IonButton>
+        <IonButton type="submit" expand="block" onClick={handleSubmit}>Submit</IonButton>
         </form>
       </IonContent>
     </IonPage>
