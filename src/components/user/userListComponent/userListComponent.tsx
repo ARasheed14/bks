@@ -11,6 +11,7 @@ interface ContainerProps {
 
 const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSelectedPerson, setIsSelected }) => {
   const [searchText, setSearchText] = useState('');
+  console.log(peopleList, 'user comp')
   return (
     <>
       <IonToolbar>
@@ -25,12 +26,13 @@ const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSel
             return person
           }
         }).map((person, key) => 
-        <IonItem key={key} onClick={() => {setCurrentSelectedPerson(person); setIsSelected(true)}}>
+        <IonItem key={key} onClick={() => {setCurrentSelectedPerson(person); setIsSelected(true);}}>
           <IonGrid>
             <IonRow className="ion-align-items-center">
               <IonCol size="3">
+                {console.log(person, 'each person')}
               <IonAvatar>
-                <img src={person.avatarimg} />
+                <img src='https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp' />
               </IonAvatar>
               </IonCol>
                 <IonCol size="9">

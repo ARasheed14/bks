@@ -15,8 +15,7 @@ interface ContainerProps {
 const Tab1: React.FC<ContainerProps> = ({ list }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [currentSelectedPerson, setCurrentSelectedPerson] = useState<any>('');
-  // PeopleService.addPerson(test);
-  // PeopleService.getPeople();
+
   return (
     <IonPage>
       <IonHeader>

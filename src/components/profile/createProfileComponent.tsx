@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonBackButton, IonButtons, IonGrid, IonCol, IonRow, IonButton, useIonLoading } from '@ionic/react';
 import { useHistory } from "react-router-dom";
 import './createProfileComponent.css';
+import * as PeopleService from '../../services/person.service';
+import { Person } from '../../models/person';
 
 interface ContainerProps {
   // setIsSignUp: any,
@@ -22,18 +24,24 @@ const CreateProfileComponent: React.FC<ContainerProps> = ({ updatePeopleList }) 
 
   const history = useHistory();
 
+  const createPerson = async (person: Person) => {
+    await PeopleService.addPerson(person);
+  }
+
   const handleSubmit = (e:any) => {
     // setIsSignUp(false);
     // setToken('Token');
     present({
       message: 'Creating Profile...',
-      duration: 3000
     })
-    updatePeopleList(formState);
-    setTimeout(() => {
+    createPerson(formState).then((res) => {
+      updatePeopleList(formState);
       history.goBack()
-    }, 3000)
-    console.log(formState);
+      dismiss();
+    }).catch((err) => {
+      console.log(err);
+    });
+    console.log(formState, 'person to create');
   }
 
   const handleChange = (e: any) => {
@@ -56,7 +64,7 @@ const CreateProfileComponent: React.FC<ContainerProps> = ({ updatePeopleList }) 
         </IonToolbar>
       </IonHeader>
 
-      <IonContent className='test'>
+      <IonContent>
         <form>
         <IonList>
           <IonItemDivider>Name</IonItemDivider>

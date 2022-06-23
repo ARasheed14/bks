@@ -6,8 +6,7 @@ export async function getPeople() {
         {
             method: 'GET',
         });
-        const res = await response.json();
-        console.log(res)
+        let res = await response.json();
         return res;
     }
     catch(error){
