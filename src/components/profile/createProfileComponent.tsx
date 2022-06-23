@@ -36,7 +36,7 @@ const CreateProfileComponent: React.FC<ContainerProps> = ({ updatePeopleList }) 
     })
     createPerson(formState).then((res) => {
       updatePeopleList(formState);
-      history.goBack()
+      history.goBack();
       dismiss();
     }).catch((err) => {
       console.log(err);

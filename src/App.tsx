@@ -86,7 +86,7 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet>
-              <Route exact path="/tab1">
+              <Route exact path="/tab1" component={Tab1}>
                 <Tab1 list={peopleList} />
               </Route>
               <Route exact path="/tab2">
