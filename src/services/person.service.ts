@@ -23,7 +23,6 @@ export async function addPerson(person: Person) {
             body: JSON.stringify(person)
         });
         const res = await response;
-        console.log(res)
         return res;
     }
     catch(error){

@@ -5,13 +5,12 @@ import { useState } from 'react';
 
 interface ContainerProps {
   peopleList: Person[]
-  setCurrentSelectedPerson: any,
+  setCurrentSelectedPerson: any
   setIsSelected: any
 }
 
 const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSelectedPerson, setIsSelected }) => {
   const [searchText, setSearchText] = useState('');
-  console.log(peopleList, 'user comp')
   return (
     <>
       <IonToolbar>
@@ -30,7 +29,6 @@ const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSel
           <IonGrid>
             <IonRow className="ion-align-items-center">
               <IonCol size="3">
-                {console.log(person, 'each person')}
               <IonAvatar>
                 <img src='https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp' />
               </IonAvatar>
