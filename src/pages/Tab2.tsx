@@ -1,22 +1,25 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import EventsListComponent from '../components/events/eventsListComponent';
+import EventsDetailsComponent from '../components/events/eventsDetailComponent';
 import './Tab2.css';
+import { useState } from 'react';
 
 const Tab2: React.FC = () => {
+  const [isEventSelected, setIsEventSelected] = useState(false);
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Events</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+        {isEventSelected? 
+          <EventsDetailsComponent />
+         : 
+          <EventsListComponent />
+        }
+        <EventsListComponent />
       </IonContent>
     </IonPage>
   );

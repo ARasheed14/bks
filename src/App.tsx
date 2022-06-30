@@ -14,9 +14,12 @@ import { calendar, ellipse, home, mic, square, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
-import UserDetailComponent from './components/userDetailComponent/userDetailComponent';
-import CreateProfileComponent from './components/createProfileComponent/createProfileComponent';
+import UserDetailComponent from './components/user/userDetailComponent/userDetailComponent';
+import CreateProfileComponent from './components/profile/createProfileComponent';
+import LoginComponent from './components/login/loginComponent';
+import LandingComponent from './components/landing/landingComponent';
 import { Person } from './models/person';
+import * as PeopleService from './services/person.service';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,73 +39,90 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { useEffect, useState } from 'react';
 
 setupIonicReact();
 
-const peopleList: Person[] = [
-  { 
-    _id: 2,
-    first_name: 'John',
-    last_name: 'Doe',
-    age: '20',
-    hobbies: ['running, writing'],
-    professions: ['teacher, author']
-  },
-  { 
-    _id: 2,
-    first_name: 'John',
-    last_name: 'Doe',
-    age: '20',
-    hobbies: ['running, writing'],
-    professions: ['teacher, author']
-  },
-  { 
-    _id: 2,
-    first_name: 'John',
-    last_name: 'Doe',
-    age: '20',
-    hobbies: ['running, writing'],
-    professions: ['teacher, author']
-  }
-];
+const App: React.FC = () => {
+  let list: any = [];
+  const [token, setToken] = useState('');
+  // const [isSignUp, setIsSignUp] = useState(false);
+  const [peopleList, setPeopleList] = useState<any>([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 list={peopleList} />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
-          <Route path="/userdetailcomponent/users/:id" component={UserDetailComponent}/>
-          <Route path="/createprofilecomponent" component={CreateProfileComponent}/>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={calendar} />
-            <IonLabel>Events</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={mic} />
-            <IonLabel>Live Sessions</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+  // const updateSignUpFlag = (isSignUp: boolean) => {
+  //   setIsSignUp(isSignUp);
+
+  // const loginCheck = () => {
+  //   console.log(isLoggedIn);
+  // }
+  const updateList = (person: Person) => {
+    setPeopleList([
+      ...peopleList, person
+    ])
+  }
+  // console.log(token, isSignUp, 'here')
+  // if(token === '' && isSignUp === false) {
+  //   return ( <LandingComponent  setIsSignUp={updateSignUpFlag} /> )
+  // }  else if (isSignUp === true) {
+  //   return ( <CreateProfileComponent  setToken={setToken} setIsSignUp={updateSignUpFlag} /> )
+  // } 
+  // else {
+
+    useEffect(() => {
+      const getPeople = async () => {
+        const pep = await PeopleService.getPeople();
+        const list:any = [];
+        pep.forEach((person: any) => {
+          list.push(person.requestBody);
+        });
+        setPeopleList(list);
+      }
+      getPeople();
+    }, []);
+
+    return (
+      <IonApp>
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route exact path="/tab1" component={Tab1}>
+                <Tab1 list={peopleList} />
+              </Route>
+              <Route exact path="/tab2">
+                <Tab2 />
+              </Route>
+              <Route path="/tab3">
+                <Tab3 />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/tab1" />
+              </Route>
+              <Route path="/userdetailcomponent/users/:id" component={UserDetailComponent} />
+              <Route path="/createprofilecomponent" render={() => <CreateProfileComponent updatePeopleList={updateList}/>} />
+              <Route path="/landingcomponent" component={LandingComponent} />
+              <Route path="/logincomponent" component={LoginComponent} />
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="tab1" href="/tab1">
+                <IonIcon icon={home} />
+                <IonLabel>Home</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="tab2" href="/tab2">
+                <IonIcon icon={calendar} />
+                <IonLabel>Events</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="tab3" href="/tab3">
+                <IonIcon icon={mic} />
+                <IonLabel>Live Sessions</IonLabel>
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </IonApp>
+    )
+  // }
+  
+};
 
 export default App;

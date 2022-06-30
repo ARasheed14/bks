@@ -1,4 +1,4 @@
-import { Person } from '../../models/person';
+import { Person } from '../../../models/person';
 import { IonList, IonItem, IonGrid, IonRow, IonCol, IonAvatar, IonCardHeader, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 import './userDetailComponent.css';
 
@@ -13,13 +13,10 @@ const UserDetailComponent: React.FC<ContainerProps> = ({ person }) => {
         <IonItem>
           <IonGrid>
             <IonRow className="ion-align-items-center">
-              <IonCol size="3">
-                <IonAvatar>
+              <IonCol className='ion-justify-content-center'>
+                <IonAvatar style={{ margin: 'auto', height: '120px', width: '120px' }}>
                   <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp" />
                 </IonAvatar>
-              </IonCol>
-              <IonCol size="9">
-                {person.first_name} {person.last_name}
               </IonCol>
             </IonRow>
           </IonGrid>
@@ -27,13 +24,18 @@ const UserDetailComponent: React.FC<ContainerProps> = ({ person }) => {
       </IonList>
       <IonCard>
         <IonCardHeader>
-          <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-          <IonCardTitle>Card Title</IonCardTitle>
+          <IonCardTitle>{person.first_name} {person.last_name}</IonCardTitle>
+          <IonCardSubtitle>
+            Curreent Title: <br />
+            {person.profession}
+          </IonCardSubtitle>
+          <IonCardSubtitle>
+            About:
+          </IonCardSubtitle>
         </IonCardHeader>
 
         <IonCardContent>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+          {person.about}
         </IonCardContent>
       </IonCard>
     </>

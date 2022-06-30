@@ -1,8 +1,9 @@
 export interface Person {
     _id: number
     first_name: string
+    avatarimg: string
     age: string
-    hobbies: string[]
+    about: string
     last_name: string
-    professions: string[]
+    profession: string
   }
