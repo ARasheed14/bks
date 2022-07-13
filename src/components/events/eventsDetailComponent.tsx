@@ -1,15 +1,25 @@
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon } from '@ionic/react';
+import { pinOutline } from 'ionicons/icons';
 import './eventsListComponent.css';
 
 interface ContainerProps {
-  
+  selectedEvent: any
 }
 
-const EventsDetailsComponent: React.FC<ContainerProps> = () => {
+const EventsDetailsComponent: React.FC<ContainerProps> = ({ selectedEvent }) => {
+  console.log(selectedEvent, 'current event');
   return (
-    <div className="container">
-      <strong>Test</strong>
-      <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    </div>
+    <>
+      <IonCard>
+        <IonCardHeader>
+          <IonCardTitle>{selectedEvent.title}</IonCardTitle>
+        </IonCardHeader>
+
+        <IonCardContent>
+          <IonIcon icon={pinOutline}></IonIcon> {selectedEvent.location}
+        </IonCardContent>
+      </IonCard>
+    </>
   );
 };
 

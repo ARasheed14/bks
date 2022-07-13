@@ -1,25 +1,38 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import EventsListComponent from '../components/events/eventsListComponent';
 import EventsDetailsComponent from '../components/events/eventsDetailComponent';
 import './Tab2.css';
 import { useState } from 'react';
 
-const Tab2: React.FC = () => {
+interface ContainerProps {
+  eventsList: []
+}
+const Tab2: React.FC<ContainerProps> = ({ eventsList }) => {
   const [isEventSelected, setIsEventSelected] = useState(false);
+  const [selectedEvent, setCurrentSelectedEvent] = useState<any>('');
   return (
     <IonPage>
-      <IonHeader>
+      {isEventSelected ?
         <IonToolbar>
-          <IonTitle>Events</IonTitle>
+          <IonButtons>
+            <IonButton onClick={() => { setIsEventSelected(false) }}>
+              Back
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
-      </IonHeader>
+        :
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Events</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+      }
       <IonContent fullscreen>
-        {isEventSelected? 
-          <EventsDetailsComponent />
-         : 
-          <EventsListComponent />
+        {isEventSelected ?
+          <EventsDetailsComponent selectedEvent={selectedEvent} />
+          :
+          <EventsListComponent eventsList={eventsList} setCurrentSelectedEvent={setCurrentSelectedEvent} setIsEventSelected={setIsEventSelected} />
         }
-        <EventsListComponent />
       </IonContent>
     </IonPage>
   );

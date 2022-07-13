@@ -1,0 +1,19 @@
+.card-time-location {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Open Sans';
+}
+.card-content-container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.icon-padding {
+  padding-right: 10px;
+}
+.title {
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Open Sans';
+}

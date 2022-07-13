@@ -7,40 +7,40 @@ import { Person } from '../models/person';
 import { useState } from 'react';
 
 interface ContainerProps {
-  list: Person[]
+  peopleList: Person[]
 }
 
-const Tab1: React.FC<ContainerProps> = ({ list }) => {
+const Tab1: React.FC<ContainerProps> = ({ peopleList }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [currentSelectedPerson, setCurrentSelectedPerson] = useState<any>('');
 
   return (
     <IonPage>
       <IonHeader>
-        {isSelected? 
+        {isSelected ?
           <IonToolbar>
             <IonButtons>
-              <IonButton onClick={() => {setIsSelected(false)}}>
+              <IonButton onClick={() => { setIsSelected(false) }}>
                 Back
               </IonButton>
             </IonButtons>
           </IonToolbar>
-        : 
-        <IonToolbar>
-          <IonButtons slot="primary">
-            <IonButton routerLink='/createprofilecomponent'>
-              <IonIcon size="large" slot="start" color="medium" icon={personCircle} />
-            </IonButton> 
-          </IonButtons>
-          <IonTitle size="large">Home</IonTitle>
-        </IonToolbar>
+          :
+          <IonToolbar>
+            <IonButtons slot="primary">
+              <IonButton routerLink='/createprofilecomponent'>
+                <IonIcon size="large" slot="start" color="medium" icon={personCircle} />
+              </IonButton>
+            </IonButtons>
+            <IonTitle size="large">Home</IonTitle>
+          </IonToolbar>
         }
-        </IonHeader>
+      </IonHeader>
       <IonContent fullscreen>
-        {isSelected? 
-        <UserDetailComponent person={currentSelectedPerson} />
-        :  
-        <UserListComponent peopleList={list} setCurrentSelectedPerson={setCurrentSelectedPerson} setIsSelected={setIsSelected}/>
+        {isSelected ?
+          <UserDetailComponent person={currentSelectedPerson} />
+          :
+          <UserListComponent peopleList={peopleList} setCurrentSelectedPerson={setCurrentSelectedPerson} setIsSelected={setIsSelected} />
         }
       </IonContent>
     </IonPage>

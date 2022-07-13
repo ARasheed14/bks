@@ -20,6 +20,7 @@ import LoginComponent from './components/login/loginComponent';
 import LandingComponent from './components/landing/landingComponent';
 import { Person } from './models/person';
 import * as PeopleService from './services/person.service';
+import * as EventsService from './services/events.service';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -49,6 +50,7 @@ const App: React.FC = () => {
   // const [isSignUp, setIsSignUp] = useState(false);
   const [peopleList, setPeopleList] = useState<any>([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [eventsList, setEventsList] = useState<any>([]);
 
   // const updateSignUpFlag = (isSignUp: boolean) => {
   //   setIsSignUp(isSignUp);
@@ -69,16 +71,28 @@ const App: React.FC = () => {
   // } 
   // else {
 
-    useEffect(() => {
-      const getPeople = async () => {
-        const pep = await PeopleService.getPeople();
-        const list:any = [];
-        pep.forEach((person: any) => {
-          list.push(person.requestBody);
+    const getPeople = async () => {
+      const pep = await PeopleService.getPeople();
+      const list:any = [];
+      pep.forEach((person: any) => {
+        list.push(person.requestBody);
+      });
+      setPeopleList(list);
+    }
+
+    const getEvents = async () => {
+      const list: any = [];
+      await EventsService.getEvents().then((res) => {
+        res.forEach((event: any) => {
+          list.push(event.requestBody);
         });
-        setPeopleList(list);
-      }
+      })
+      setEventsList(list);
+    }
+
+    useEffect(() => {
       getPeople();
+      getEvents();
     }, []);
 
     return (
@@ -87,10 +101,10 @@ const App: React.FC = () => {
           <IonTabs>
             <IonRouterOutlet>
               <Route exact path="/tab1" component={Tab1}>
-                <Tab1 list={peopleList} />
+                <Tab1 peopleList={peopleList} />
               </Route>
               <Route exact path="/tab2">
-                <Tab2 />
+                <Tab2 eventsList={eventsList} />
               </Route>
               <Route path="/tab3">
                 <Tab3 />
