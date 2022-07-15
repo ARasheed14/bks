@@ -1,28 +1,31 @@
 import { IonToolbar, IonSearchbar, IonItem, IonList, IonButton, IonCard, IonCardContent, IonIcon, IonLabel, IonCardHeader, IonCardSubtitle, IonCardTitle, IonGrid, IonImg, IonCol, IonRow } from '@ionic/react';
 import { pin, time } from 'ionicons/icons';
-import { useEffect, useState } from 'react';
 import { AttendableEvent } from '../../models/attendableEvent';
 import * as EventsService from '../../services/events.service';
 import './eventsListComponent.css'
-const tcStringParse = require('tc-string-parse');
+// const tcStringParse = require('tc-string-parse');
+import tcStringParse from '../../services/tcCon.service';
 
 interface ContainerProps {
   eventsList: []
   setIsEventSelected: any
   setCurrentSelectedEvent: any
 }
-
+const test = `
+  let tcParse = ${tcStringParse};
+  let fcT = 'CPb6LlgPb6LlgEsABBENCXCgAAAAAH_AACiQAAAQWYDyFSIgEKCYFDSASQoQAIsACAAAMBAFAADBgAAECQASVgAIEAEAAEQABAAABwAAAwAAAAAAAAAAAIAwAAACAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAIAABAAgACAABAACAAAwAABgAIAJAAAIAAAAAAAAAAAAAAAAAgAAQAAAAAACCIAAA.YAAAAGgAAAA';
+  if (fcT){ console.log(JSON.stringify(tcParse(fcT))); }`;
 const EventsListComponent: React.FC<ContainerProps> = ({ eventsList, setIsEventSelected, setCurrentSelectedEvent }) => {
-  
+
   const noCon = tcStringParse('CPb6LlgPb6LlgEsABBENCXCgAAAAAH_AACiQAAAQWYDyFSIgEKCYFDSASQoQAIsACAAAMBAFAADBgAAECQASVgAIEAEAAEQABAAABwAAAwAAAAAAAAAAAIAwAAACAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAIAABAAgACAABAACAAAwAABgAIAJAAAIAAAAAAAAAAAAAAAAAgAAQAAAAAACCIAAA.YAAAAGgAAAA');
-  const yesCon = tcStringParse('CPb6LlgPb6LlgEsABBENCXCoAP_AAH_AACiQILMB5CpEQCFBMCh9AJoUIAEWgBhgAGAgCgABg4ABCBIAJKwAECACAACIAAgAAA4AAAYAAAAAAAAAAAEAYAAABACEAAAAAAAAIAAAAAAAAAAAAAAAAAEAEAAAgAQABAAAgABEAAYAAAwAEAEgAAEAAAgAAAAAAAAAAAAAQAgIAAAAACBBEEFmA8hUiIBCgmBQ0gEkKEACLAAgAADAQBQAAwYAABAkAElYACBABAABEAAQAAAcAAAMAAAAAAAAAAACAMAAAAgBAAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAQAIAAgAAQAAgAAMAAAYACACQAACAAAAAAAAAAAAAAAAAIAAEAAAAAAAgiAA.fhAAAGgAAAA');
+  const yesCon = tcStringParse('CPcHFwgPcHFwgEsABBENCXCoAP_AAH_AACiQILMB5CpEQCFBMCh9AJoUIAEWgBhgAGAgCgABg4ABCBIAJKwAECACAACIAAgAAA4AAAYAAAAAAAAAAAEAYAAABACEAAAAAAAAIAAAAAAAAAAAAAAAAAEAEAAAgAQABAAAgABEAAYAAAwAEAEgAAEAAAgAAAAAAAAAAAAAQAgIAAAAACBBEEFmA8hUiIBCgmBQ0gEkKEACLAAgAADAQBQAAwYAABAkAElYACBABAABEAAQAAAcAAAMAAAAAAAAAAACAMAAAAgBAAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAQAIAAgAAQAAgAAMAAAYACACQAACAAAAAAAAAAAAAAAAAIAAEAAAAAAAgiAA.fhAAAGgAAAA');
 
     const setSearchText = (e: string) => {
         throw new Error('Function not implemented.');
     }
-    console.log('No Con', noCon);
+    // console.log('No Con', noCon);
     console.log('Yes Con', yesCon);
-    if(Object.keys(noCon.publisherTC.purposeConsents).length ) console.log(noCon.publisherTC.purposeConsents);
+    if(Object.keys(yesCon.publisher.consents).length ) console.log(yesCon.publisher.consents);
   return (
     <>
       <IonToolbar>
