@@ -87,12 +87,12 @@ const tcStringparse = (consentString) => {
           result[schema.parent] = {};
         }
 
-        if (typeof result[schema.parent][schema.key] === 'object' && typeof value === 'object') {
+        if (result[schema.parent][schema.key] !== null && value !== null) {
           result[schema.parent][schema.key] = objectAssign(result[schema.parent][schema.key], value);
         } else {
           result[schema.parent][schema.key] = value;
         }
-      } else if (typeof result[schema.key] === 'object' && value === 'object') {
+      } else if (result[schema.key]!== null && value !== null) {
         result[schema.key] = objectAssign(result[schema.key], value);
       } else {
         result[schema.key] = value;

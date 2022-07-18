@@ -128,7 +128,7 @@ const App: React.FC = () => {
               </IonTabButton>
               <IonTabButton tab="tab3" href="/tab3">
                 <IonIcon icon={mic} />
-                <IonLabel>Live Sessions</IonLabel>
+                <IonLabel>Sessions</IonLabel>
               </IonTabButton>
             </IonTabBar>
           </IonTabs>

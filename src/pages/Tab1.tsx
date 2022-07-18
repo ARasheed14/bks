@@ -1,5 +1,5 @@
 import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { personCircle } from 'ionicons/icons';
+import { cog, cogOutline, personCircle } from 'ionicons/icons';
 import UserListComponent from '../components/user/userListComponent/userListComponent';
 import UserDetailComponent from '../components/user/userDetailComponent/userDetailComponent';
 import './Tab1.css';
@@ -26,13 +26,31 @@ const Tab1: React.FC<ContainerProps> = ({ peopleList }) => {
             </IonButtons>
           </IonToolbar>
           :
+          // <IonToolbar>
+          //   <IonButtons slot="start">
+          //     <IonButton>
+          //       <IonIcon className='header-icon' slot="icon-only" color="medium" icon={cog}/>
+          //     </IonButton>
+          //   </IonButtons>
+          //   <IonButtons slot="end">
+          //     <IonButton routerLink='/createprofilecomponent'>
+          //       <IonIcon className='header-icon' slot="icon-only" color="medium" icon={personCircle} />
+          //     </IonButton>
+          //   </IonButtons>
+          //   <IonTitle size="large">Home</IonTitle>
+          // </IonToolbar>
           <IonToolbar>
-            <IonButtons slot="primary">
-              <IonButton routerLink='/createprofilecomponent'>
-                <IonIcon size="large" slot="start" color="medium" icon={personCircle} />
+            <IonButtons slot="start">
+              <IonButton>
+                <IonIcon slot="icon-only" size="large" color="medium" icon={cogOutline} />
               </IonButton>
             </IonButtons>
-            <IonTitle size="large">Home</IonTitle>
+            <IonButtons slot="secondary">
+              <IonButton routerLink='/createprofilecomponent'>
+                <IonIcon slot="icon-only" size="large" color="medium" icon={personCircle} />
+              </IonButton>
+            </IonButtons>
+            <IonTitle className='header-title'>Home</IonTitle>
           </IonToolbar>
         }
       </IonHeader>

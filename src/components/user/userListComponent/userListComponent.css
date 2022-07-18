@@ -17,3 +17,12 @@
   .container a {
     text-decoration: none;
   }
+
+  .avatar {
+    height: 36px;
+    width: 36px;
+  }
+
+  .list-row {
+    border-bottom: 1px solid #3c3c3f;
+  }

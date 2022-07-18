@@ -26,10 +26,10 @@ const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSel
           }
         }).map((person, key) => 
         <IonItem key={key} onClick={() => {setCurrentSelectedPerson(person); setIsSelected(true);}}>
-          <IonGrid>
+          <IonGrid className='list-row'>
             <IonRow className="ion-align-items-center">
               <IonCol size="3">
-              <IonAvatar>
+              <IonAvatar className='avatar'>
                 <img src='https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp' />
               </IonAvatar>
               </IonCol>

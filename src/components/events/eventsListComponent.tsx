@@ -11,10 +11,7 @@ interface ContainerProps {
   setIsEventSelected: any
   setCurrentSelectedEvent: any
 }
-const test = `
-  let tcParse = ${tcStringParse};
-  let fcT = 'CPb6LlgPb6LlgEsABBENCXCgAAAAAH_AACiQAAAQWYDyFSIgEKCYFDSASQoQAIsACAAAMBAFAADBgAAECQASVgAIEAEAAEQABAAABwAAAwAAAAAAAAAAAIAwAAACAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAIAABAAgACAABAACAAAwAABgAIAJAAAIAAAAAAAAAAAAAAAAAgAAQAAAAAACCIAAA.YAAAAGgAAAA';
-  if (fcT){ console.log(JSON.stringify(tcParse(fcT))); }`;
+
 const EventsListComponent: React.FC<ContainerProps> = ({ eventsList, setIsEventSelected, setCurrentSelectedEvent }) => {
 
   const noCon = tcStringParse('CPb6LlgPb6LlgEsABBENCXCgAAAAAH_AACiQAAAQWYDyFSIgEKCYFDSASQoQAIsACAAAMBAFAADBgAAECQASVgAIEAEAAEQABAAABwAAAwAAAAAAAAAAAIAwAAACAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAIAABAAgACAABAACAAAwAABgAIAJAAAIAAAAAAAAAAAAAAAAAgAAQAAAAAACCIAAA.YAAAAGgAAAA');
@@ -23,9 +20,28 @@ const EventsListComponent: React.FC<ContainerProps> = ({ eventsList, setIsEventS
     const setSearchText = (e: string) => {
         throw new Error('Function not implemented.');
     }
+
+    const getCookie = (cname: any) => {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
     // console.log('No Con', noCon);
-    console.log('Yes Con', yesCon);
-    if(Object.keys(yesCon.publisher.consents).length ) console.log(yesCon.publisher.consents);
+    // console.log('Yes Con', yesCon);
+    if(Object.keys(yesCon.publisher.consents).length ) {
+      let t = getCookie('wp-settings-1');
+      console.log(t);
+    }
   return (
     <>
       <IonToolbar>
@@ -33,22 +49,32 @@ const EventsListComponent: React.FC<ContainerProps> = ({ eventsList, setIsEventS
       </IonToolbar>
       <IonList>
         {eventsList.map((attendableEvent: AttendableEvent, key: any) => 
-          <IonCard key={key}>
+          <IonCard key={key} onClick={() => { setIsEventSelected(true); setCurrentSelectedEvent(attendableEvent) }} className='card-margin'>
             {attendableEvent.event_img ? (
-              <IonImg onClick={() => { setIsEventSelected(true); setCurrentSelectedEvent(attendableEvent) }} src={attendableEvent.event_img}/>
+              <IonImg src={attendableEvent.event_img}/>
             ) : (
-              <IonImg onClick={() => { setIsEventSelected(true); setCurrentSelectedEvent(attendableEvent)}} src='https://source.unsplash.com/200x200/?nature'/>
+              <IonImg src='https://source.unsplash.com/200x200/?nature'/>
             )  
             }
             <IonCardHeader>
               <IonCardTitle className='title'>{attendableEvent.title}</IonCardTitle>
             </IonCardHeader>
             <div className='card-content-container'>
-              <IonCardContent>
+              <IonCardContent className='card-border'>
                 <IonGrid>
                   <IonRow className='card-time-location'>
-                    <IonCol><IonIcon icon={time} className='icon-padding'/>{attendableEvent.date}</IonCol>
-                    <IonCol><IonIcon icon={pin} className='icon-padding'/>{attendableEvent.location}</IonCol>
+                    <IonCol className='card-info'>
+                      <IonIcon icon={time} className='card-icon'/>
+                      <div>
+                        {attendableEvent.date}
+                      </div>
+                    </IonCol>
+                    <IonCol className='left-border card-info'>
+                      <IonIcon icon={pin} className='card-icon'/>
+                      <div>
+                        {attendableEvent.location}
+                      </div>
+                    </IonCol>
                   </IonRow>
                 </IonGrid>
               </IonCardContent>
