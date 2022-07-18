@@ -1,6 +1,22 @@
 .fee-restrictions {
-  justify-content: center;
   align-items: center;
-  text-align: end;
-  font-family: 'Open Sans';
+  text-align: center;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.icon-padding {
+  padding-right: 12px;
+  height: 20px;
+  width: 20px;
+}
+
+.description {
+  text-align: 'center';
+  border-bottom: 1px solid #3c3c3f;
+  padding-bottom: 10px;
+}
+
+.card-time-location {
+  padding-top: 10px;
 }
