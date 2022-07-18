@@ -13,29 +13,31 @@ const Tab2: React.FC<ContainerProps> = ({ eventsList }) => {
   const [selectedEvent, setCurrentSelectedEvent] = useState<any>('');
   return (
     <IonPage>
-      {isEventSelected ?
-        <IonToolbar>
-          <IonButtons>
-            <IonButton onClick={() => { setIsEventSelected(false) }}>
-              Back
-            </IonButton>
-          </IonButtons>
-        </IonToolbar>
-        :
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonButton>
-              <IonIcon slot="icon-only" size="large" color="medium" icon={starOutline} />
-            </IonButton>
-          </IonButtons>
-          <IonButtons slot="secondary">
-            <IonButton routerLink='/createprofilecomponent'>
-              <IonIcon slot="icon-only" size="large" color="medium" icon={addOutline} />
-            </IonButton>
-          </IonButtons>
-          <IonTitle className='header-title'>Events</IonTitle>
-        </IonToolbar>
-      }
+      <IonHeader>
+        {isEventSelected ?
+          <IonToolbar>
+            <IonButtons>
+              <IonButton onClick={() => { setIsEventSelected(false) }}>
+                Back
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+          :
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonButton>
+                <IonIcon slot="icon-only" size="large" color="medium" icon={starOutline} />
+              </IonButton>
+            </IonButtons>
+            <IonButtons slot="end">
+              <IonButton routerLink='/createprofilecomponent'>
+                <IonIcon slot="icon-only" size="large" color="medium" icon={addOutline} />
+              </IonButton>
+            </IonButtons>
+            <IonTitle className='header-title'>Events</IonTitle>
+          </IonToolbar>
+        }
+      </IonHeader>
       <IonContent fullscreen>
         {isEventSelected ?
           <EventsDetailsComponent selectedEvent={selectedEvent} />

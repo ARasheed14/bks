@@ -1,5 +1,5 @@
 import { Person } from '../../../models/person';
-import { IonList, IonItem, IonGrid, IonRow, IonCol, IonSearchbar, IonToolbar, IonAvatar } from '@ionic/react';
+import { IonList, IonItem, IonGrid, IonRow, IonCol, IonSearchbar, IonToolbar, IonAvatar, IonImg } from '@ionic/react';
 import './userListComponent.css';
 import { useState } from 'react';
 
@@ -30,7 +30,7 @@ const UserListComponent: React.FC<ContainerProps> = ({ peopleList, setCurrentSel
             <IonRow className="ion-align-items-center">
               <IonCol size="3">
               <IonAvatar className='avatar'>
-                <img src='https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp' />
+                <IonImg src='https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=mp' />
               </IonAvatar>
               </IonCol>
                 <IonCol size="9">

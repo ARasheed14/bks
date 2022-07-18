@@ -7,7 +7,6 @@ interface ContainerProps {
 }
 
 const EventsDetailsComponent: React.FC<ContainerProps> = ({ selectedEvent }) => {
-  console.log(selectedEvent, 'current event');
   return (
     <>
       <IonCard>

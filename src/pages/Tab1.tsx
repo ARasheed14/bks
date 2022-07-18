@@ -26,26 +26,13 @@ const Tab1: React.FC<ContainerProps> = ({ peopleList }) => {
             </IonButtons>
           </IonToolbar>
           :
-          // <IonToolbar>
-          //   <IonButtons slot="start">
-          //     <IonButton>
-          //       <IonIcon className='header-icon' slot="icon-only" color="medium" icon={cog}/>
-          //     </IonButton>
-          //   </IonButtons>
-          //   <IonButtons slot="end">
-          //     <IonButton routerLink='/createprofilecomponent'>
-          //       <IonIcon className='header-icon' slot="icon-only" color="medium" icon={personCircle} />
-          //     </IonButton>
-          //   </IonButtons>
-          //   <IonTitle size="large">Home</IonTitle>
-          // </IonToolbar>
           <IonToolbar>
             <IonButtons slot="start">
               <IonButton>
                 <IonIcon slot="icon-only" size="large" color="medium" icon={cogOutline} />
               </IonButton>
             </IonButtons>
-            <IonButtons slot="secondary">
+            <IonButtons slot="end">
               <IonButton routerLink='/createprofilecomponent'>
                 <IonIcon slot="icon-only" size="large" color="medium" icon={personCircle} />
               </IonButton>
